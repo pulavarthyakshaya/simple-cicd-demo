@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>A Simple Calculator Web Page</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-color: lightblue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    header {
+        background-color: blue;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .container {
+        background-color: white;
+        padding: 30px;
+        margin-top: 50px;
+        border-radius: 10px;
+        box-shadow: 5px 2px 8px black (0,0,0,0.3);
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        color: white;
+    }
+    .greetBtn {
+        background-color:chocolate;
+    }
+    .calcBtn {
+        background-color: lightseagreen;
+    }
+    .colorBtn {
+        background-color:blueviolet;
+    }
+    .resultBtn {
+        background-color:red;
+    }
+    .calcSection {
+        margin-top: 20px;
+        display: none;
+    }
+    input {
+        padding: 8px;
+        margin: 5px;
+        font-size: 14px;
+        width: 120px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    A Simple Web Page
+</header>
+
+<div class="container">
+    <h2>Greeting Message</h2>
+    <button class="greetBtn" onclick="showGreeting()">Show Greeting</button>
+
+    <h2>Calculator</h2>
+    <button class="calcBtn" onclick="toggleCalculator()">Show Calculator</button>
+    <div class="calcSection" id="calculator">
+        <input type="number" id="num1" placeholder="Enter 1st number">
+        <input type="number" id="num2" placeholder="Enter 2nd number"><br>
+        <button class="resultBtn" id="resultButton" onclick="calculateSum()">Add</button>
+        <p id="result"></p>
+    </div>
+
+    <h2>Colour Changing Button</h2>
+    <button class="colorBtn" id="colorButton" onclick="changeButtonColor()">Click Here to Change Colour</button>
+</div>
+
+<script>
+    function showGreeting() {
+        const hour = new Date().getHours();
+        let greeting;
+        if (hour < 12) {
+            greeting = "Good Morning!";
+        } else if (hour < 18) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Evening!";
+        }
+        alert(greeting);
+    }
+    function toggleCalculator() {
+        const calc = document.getElementById('calculator');
+        calc.style.display = calc.style.display === 'none' ? 'block' : 'none';
+    }
+    function calculateSum() {
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const resultBtn = document.getElementById('resultButton');
+        if (!isNaN(num1) && !isNaN(num2)) {
+            document.getElementById('result').textContent = "Result: " + (num1 + num2);
+        } else {
+            document.getElementById('result').textContent = "Please enter valid numbers.";
+        }
+    }
+    function changeButtonColor() {
+        const colors = ["red", "blue", "green", "orange", "pink", "teal", "brown"];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.getElementById("colorButton").style.backgroundColor = randomColor;
+    }
+</script>
+</body>
+</html>
